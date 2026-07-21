@@ -8,6 +8,7 @@ import {
   Chip,
   Typography,
 } from "@mui/material";
+
 import AlbumDetailsDialog from "./AlbumDetailsDialog";
 
 function AlbumCard({ album, rank }) {

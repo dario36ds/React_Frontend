@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import PageTitle from "./PageTitle";
+import SongCard from "./SongCard";
 
 function CanzoniClassifica() {
   const [songs, setSongs] = useState([]);
@@ -48,13 +50,13 @@ function CanzoniClassifica() {
       {error && <ErrorMessage message={error} />}
 
       {!loading && !error && (
-        <ol>
-          {songs.map((song) => (
-            <li key={song.id}>
-              {song.name} — {song.artistName}
-            </li>
+        <Grid container spacing={2}>
+          {songs.map((song, index) => (
+            <Grid key={song.id} size={{ xs: 6, sm: 4, md: 3 }}>
+              <SongCard song={song} rank={index + 1} />
+            </Grid>
           ))}
-        </ol>
+        </Grid>
       )}
     </>
   );
