@@ -27,6 +27,12 @@ function PodcastClassifica() {
           name: item["im:name"].label,
           artistName: item["im:artist"].label,
           artworkUrl100: item["im:image"].at(-1)?.label,
+          description: item.summary?.label,
+          genre: item.category?.attributes?.label,
+          releaseDate: item["im:releaseDate"]?.attributes?.label,
+          price: item["im:price"]?.label,
+          rights: item.rights?.label,
+          appleUrl: item.id.label,
         }));
 
         setPodcasts(formattedPodcasts);
