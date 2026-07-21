@@ -4,6 +4,7 @@ import Navbar from './Navbar.jsx'
 import Home from './Home.jsx'
 import AlbumsClassifica from './AlbumClassifica.jsx'
 import CanzoniClassifica from './CanzoniClassifica.jsx'
+import PodcastClassifica from './PodcastClassifica.jsx'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/classifica-canzoni" element={<CanzoniClassifica />}/>
           <Route path="/classifica-album" element={<AlbumsClassifica />}/>
+          <Route path="/classifica-podcast" element={<PodcastClassifica />}/>
         </Routes>
       </Container>
       <Box component="footer" sx={{ py: 3, textAlign: 'center', color: 'text.secondary', fontSize: 14 }}>
