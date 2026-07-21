@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import PageTitle from "./PageTitle";
+import PodcastCard from "./PodcastCard";
 
 function PodcastClassifica() {
   const [podcasts, setPodcasts] = useState([]);
@@ -48,13 +50,13 @@ function PodcastClassifica() {
       {error && <ErrorMessage message={error} />}
 
       {!loading && !error && (
-        <ol>
-          {podcasts.map((podcast) => (
-            <li key={podcast.id}>
-              {podcast.name} — {podcast.artistName}
-            </li>
+        <Grid container spacing={2}>
+          {podcasts.map((podcast, index) => (
+            <Grid key={podcast.id} size={{ xs: 6, sm: 4, md: 3 }}>
+              <PodcastCard podcast={podcast} rank={index + 1} />
+            </Grid>
           ))}
-        </ol>
+        </Grid>
       )}
     </>
   );
