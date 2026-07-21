@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import AlbumCard from "./AlbumCard";
+import Loading from "./Loading";
 
 function AlbumsClassifica() {
   const [albums, setAlbums] = useState([]);
@@ -41,7 +42,7 @@ function AlbumsClassifica() {
       <h1>Classifica album</h1>
       <p>I 25 album più ascoltati in Italia.</p>
 
-      {loading && <p>Caricamento...</p>}
+      {loading && <Loading />}
       {error && <p>{error}</p>}
 
       {!loading && !error && (
