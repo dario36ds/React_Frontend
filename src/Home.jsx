@@ -10,7 +10,7 @@ function Home() {
         <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="flex-start">
           <Button component={Link} to="/classifica-canzoni" variant="contained">Classifica canzoni</Button>
           <Button component={Link} to="/classifica-album" variant="outlined">Classifica album</Button>
-          <Button component={Link} to="/ricerca" variant="outlined">Cerca artisti</Button>
+          <Button component={Link} to="/classifica-podcast" variant="outlined">Classifica podcast</Button>
           <Button component={Link} to="/ricerca" variant="outlined">Cerca</Button>
         </Stack>
       </Stack>
