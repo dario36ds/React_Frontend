@@ -2,9 +2,9 @@ import { Box, Container } from '@mui/material'
 import { Route, Routes } from 'react-router'
 import Navbar from './Navbar.jsx'
 import Home from './Home.jsx'
-import AlbumsClassifica from './AlbumClassifica.jsx'
-import CanzoniClassifica from './CanzoniClassifica.jsx'
-import PodcastClassifica from './PodcastClassifica.jsx'
+import AlbumsClassifica from './Album/AlbumClassifica.jsx'
+import CanzoniClassifica from './Song/SongClassifica.jsx'
+import PodcastClassifica from './Podcast/PodcastClassifica.jsx'
 
 function App() {
   return (

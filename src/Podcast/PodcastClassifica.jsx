@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
-import ErrorMessage from "./ErrorMessage";
-import Loading from "./Loading";
-import PageTitle from "./PageTitle";
-import SongCard from "./SongCard";
+import ErrorMessage from "../ErrorMessage";
+import Loading from "../Loading";
+import PageTitle from "../PageTitle";
+import PodcastCard from "./PodcastCard";
 
-function CanzoniClassifica() {
-  const [songs, setSongs] = useState([]);
+function PodcastClassifica() {
+  const [podcasts, setPodcasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("https://itunes.apple.com/it/rss/topsongs/limit=25/json")
+    fetch("https://itunes.apple.com/it/rss/toppodcasts/limit=25/json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Errore nel caricamento");
@@ -22,23 +22,23 @@ function CanzoniClassifica() {
       .then((data) => {
         const entries = data.feed?.entry || [];
 
-        const formattedSongs = entries.map((item) => ({
+        const formattedPodcasts = entries.map((item) => ({
           id: item.id.attributes["im:id"],
           name: item["im:name"].label,
           artistName: item["im:artist"].label,
           artworkUrl100: item["im:image"].at(-1)?.label,
-          albumName: item["im:collection"]?.["im:name"]?.label,
+          description: item.summary?.label,
           genre: item.category?.attributes?.label,
           releaseDate: item["im:releaseDate"]?.attributes?.label,
           price: item["im:price"]?.label,
-          recordLabel: item.rights?.label,
+          rights: item.rights?.label,
           appleUrl: item.id.label,
         }));
 
-        setSongs(formattedSongs);
+        setPodcasts(formattedPodcasts);
       })
       .catch(() => {
-        setError("Impossibile caricare la classifica delle canzoni.");
+        setError("Impossibile caricare la classifica dei podcast.");
       })
       .finally(() => {
         setLoading(false);
@@ -48,8 +48,8 @@ function CanzoniClassifica() {
   return (
     <>
       <PageTitle
-        title="Classifica canzoni"
-        subtitle="Le 25 canzoni più ascoltate in Italia."
+        title="Classifica podcast"
+        subtitle="I 25 podcast più ascoltati in Italia."
       />
 
       {loading && <Loading />}
@@ -57,9 +57,9 @@ function CanzoniClassifica() {
 
       {!loading && !error && (
         <Grid container spacing={2}>
-          {songs.map((song, index) => (
-            <Grid key={song.id} size={{ xs: 6, sm: 4, md: 3 }}>
-              <SongCard song={song} rank={index + 1} />
+          {podcasts.map((podcast, index) => (
+            <Grid key={podcast.id} size={{ xs: 6, sm: 4, md: 3 }}>
+              <PodcastCard podcast={podcast} rank={index + 1} />
             </Grid>
           ))}
         </Grid>
@@ -68,4 +68,4 @@ function CanzoniClassifica() {
   );
 }
 
-export default CanzoniClassifica;
+export default PodcastClassifica;

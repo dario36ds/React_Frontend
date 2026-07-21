@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import AlbumCard from "./AlbumCard";
-import ErrorMessage from "./ErrorMessage";
-import Loading from "./Loading";
-import PageTitle from "./PageTitle";
+import ErrorMessage from "../ErrorMessage";
+import Loading from "../Loading";
+import PageTitle from "../PageTitle";
 
 function AlbumsClassifica() {
   const [albums, setAlbums] = useState([]);
