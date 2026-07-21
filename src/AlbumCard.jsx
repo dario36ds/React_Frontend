@@ -78,6 +78,7 @@ function AlbumCard({ album, rank }) {
 
       <AlbumDetailsDialog
         album={album}
+        rank={rank}
         open={detailsOpen}
         onClose={() => setDetailsOpen(false)}
       />
