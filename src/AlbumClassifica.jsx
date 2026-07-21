@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import AlbumCard from "./AlbumCard";
+import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 
 function AlbumsClassifica() {
@@ -43,7 +44,7 @@ function AlbumsClassifica() {
       <p>I 25 album più ascoltati in Italia.</p>
 
       {loading && <Loading />}
-      {error && <p>{error}</p>}
+      {error && <ErrorMessage message={error} />}
 
       {!loading && !error && (
         <Grid container spacing={2}>
