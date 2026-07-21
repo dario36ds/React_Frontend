@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
+import AlbumCard from "./AlbumCard";
 
 function AlbumsClassifica() {
   const [albums, setAlbums] = useState([]);
@@ -43,16 +45,13 @@ function AlbumsClassifica() {
       {error && <p>{error}</p>}
 
       {!loading && !error && (
-        <div>
+        <Grid container spacing={2}>
           {albums.map((album, index) => (
-            <div key={album.id}>
-              <p>#{index + 1}</p>
-              <img src={album.artworkUrl100} alt={album.name} />
-              <h2>{album.name}</h2>
-              <p>{album.artistName}</p>
-            </div>
+            <Grid key={album.id} size={{ xs: 6, sm: 4, md: 3 }}>
+              <AlbumCard album={album} rank={index + 1} />
+            </Grid>
           ))}
-        </div>
+        </Grid>
       )}
     </div>
   );
