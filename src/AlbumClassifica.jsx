@@ -3,6 +3,7 @@ import { Grid } from "@mui/material";
 import AlbumCard from "./AlbumCard";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
+import PageTitle from "./PageTitle";
 
 function AlbumsClassifica() {
   const [albums, setAlbums] = useState([]);
@@ -39,9 +40,11 @@ function AlbumsClassifica() {
   }, []);
 
   return (
-    <div>
-      <h1>Classifica album</h1>
-      <p>I 25 album più ascoltati in Italia.</p>
+    <>
+      <PageTitle
+        title="Classifica album"
+        subtitle="I 25 album più ascoltati in Italia."
+      />
 
       {loading && <Loading />}
       {error && <ErrorMessage message={error} />}
@@ -55,7 +58,7 @@ function AlbumsClassifica() {
           ))}
         </Grid>
       )}
-    </div>
+    </>
   );
 }
 
