@@ -1,3 +1,4 @@
+import GraphicEqRoundedIcon from "@mui/icons-material/GraphicEqRounded";
 import { AppBar, Box, Button, Container, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router";
 
@@ -6,28 +7,78 @@ const links = [
   { label: "Canzoni", path: "/classifica-canzoni" },
   { label: "Album", path: "/classifica-album" },
   { label: "Podcast", path: "/classifica-podcast" },
-  { label: "Ricerca", path: "/ricerca" }
+  { label: "Ricerca", path: "/ricerca" },
 ];
 
 function Navbar() {
   return (
     <AppBar
-      position="static"
-      color="inherit"
+      position="sticky"
+      color="transparent"
       elevation={0}
-      sx={{ borderBottom: "1px solid", borderColor: "divider" }} >
+      sx={{
+        borderBottom: 1,
+        borderColor: "divider",
+        bgcolor: "rgba(255, 255, 255, 0.82)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+      }}
+    >
       <Container maxWidth="lg">
-        <Toolbar disableGutters sx={{ py: 1, gap: 2, flexWrap: "wrap" }}>
-          <Typography
+        <Toolbar
+          disableGutters
+          sx={{
+            minHeight: { xs: 72, sm: 80 },
+            gap: { xs: 1.5, sm: 3 },
+            flexDirection: { xs: "column", sm: "row" },
+            alignItems: { xs: "stretch", sm: "center" },
+            justifyContent: "space-between",
+            py: { xs: 1.5, sm: 1 },
+          }}
+        >
+          <Box
             component={NavLink}
             to="/"
-            variant="h6"
-            fontWeight={700}
-            color="primary"
-            sx={{ mr: { sm: 3 } }}>
-            SoundRank
-          </Typography>
-          <Box sx={{ display: "flex", gap: 0.5, flexWrap: "wrap" }}>
+            sx={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 1,
+              alignSelf: { xs: "flex-start", sm: "auto" },
+              color: "text.primary",
+              textDecoration: "none",
+            }}
+          >
+            <Box
+              sx={{
+                width: 38,
+                height: 38,
+                display: "grid",
+                placeItems: "center",
+                borderRadius: 2.5,
+                color: "common.white",
+                background: "linear-gradient(135deg, #7c3aed, #ec4899)",
+                boxShadow: "0 7px 18px rgba(124, 58, 237, 0.25)",
+              }}
+            >
+              <GraphicEqRoundedIcon />
+            </Box>
+            <Typography variant="h6" sx={{ fontWeight: 800, letterSpacing: -0.5 }}>
+              SoundRank
+            </Typography>
+          </Box>
+
+          <Box
+            component="nav"
+            aria-label="Navigazione principale"
+            sx={{
+              display: "flex",
+              gap: 0.5,
+              overflowX: "auto",
+              pb: { xs: 0.5, sm: 0 },
+              scrollbarWidth: "none",
+              "&::-webkit-scrollbar": { display: "none" },
+            }}
+          >
             {links.map((link) => (
               <Button
                 size="small"
@@ -36,11 +87,24 @@ function Navbar() {
                 to={link.path}
                 end={link.path === "/"}
                 sx={{
+                  flexShrink: 0,
+                  px: 1.75,
+                  py: 0.75,
+                  borderRadius: 999,
                   color: "text.secondary",
+                  fontWeight: 600,
+                  textTransform: "none",
+                  "&:hover": {
+                    color: "text.primary",
+                    bgcolor: "action.hover",
+                  },
                   "&.active": {
-                    color: "primary.main",
-                    bgcolor: "action.hover",}
-                    }} >
+                    color: "common.white",
+                    background: "linear-gradient(135deg, #7c3aed, #ec4899)",
+                    boxShadow: "0 5px 14px rgba(124, 58, 237, 0.2)",
+                  },
+                }}
+              >
                 {link.label}
               </Button>
             ))}
