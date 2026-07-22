@@ -59,9 +59,9 @@ function PodcastDetailsDialog({ podcast, rank, open, onClose }) {
         <Box sx={{ minWidth: 0, textAlign: "left" }}>
           <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
             <Chip label={`#${rank}`} color="secondary" size="small" />
-            {podcast.genre && (
-              <Chip label={podcast.genre} variant="outlined" size="small" />
-            )}
+            {podcast.genre && 
+                <Chip label={podcast.genre} size="small" sx={{ mb: 1 }} />}
+            
           </Stack>
           <Typography variant="h5" component="h2" sx={{ fontWeight: 800, mb: 1 }}>
             {podcast.name}

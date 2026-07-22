@@ -85,7 +85,7 @@ function SearchDetailsDialog({ result, open, onClose }) {
             sx={{ width: { xs: 88, sm: 120 }, height: { xs: 88, sm: 120 }, objectFit: "cover", borderRadius: 2, flexShrink: 0 }}
           />
         )}
-        <Box sx={{ minWidth: 0 }}>
+        <Box sx={{ minWidth: 0, textAlign: "left" }}>
           {result.primaryGenreName && <Chip label={result.primaryGenreName} size="small" sx={{ mb: 1 }} />}
           <Typography variant="h5" component="h2" sx={{ fontWeight: 800, lineHeight: 1.15 }}>
             {title}

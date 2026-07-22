@@ -91,7 +91,7 @@ function SongDetailsDialog({ song, rank, open, onClose }) {
         <Box sx={{ minWidth: 0, textAlign: "left" }}>
           <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
             <Chip label={`#${rank}`} color="secondary" size="small" />
-            {song.genre && <Chip label={song.genre} size="small" variant="outlined" />}
+             {song.genre && <Chip label={song.genre} size="small" sx={{ mb: 1 }} />}
           </Stack>
           <Typography
             variant="h5"

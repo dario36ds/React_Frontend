@@ -95,9 +95,7 @@ function AlbumDetailsDialog({ album, rank, open, onClose }) {
         <Box sx={{ minWidth: 0, textAlign: "left" }}>
           <Stack direction="row" spacing={1} sx={{ mb: 1, flexWrap: "wrap" }}>
             {rank && <Chip label={`#${rank}`} color="secondary" size="small" />}
-            {album.genre && (
-              <Chip label={album.genre} size="small" variant="outlined" />
-            )}
+            {album.genre && <Chip label={album.genre} size="small" sx={{ mb: 1 }} />}
           </Stack>
 
           <Typography
