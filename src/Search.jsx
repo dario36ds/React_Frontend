@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardActionArea, CardContent, TextField, Typography } from "@mui/material";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import PageTitle from "./PageTitle";
+import SearchDetailsDialog from "./SearchDetailsDialog";
 
 function Search() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [selectedResult, setSelectedResult] = useState(null);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -23,6 +25,7 @@ function Search() {
     setLoading(true);
     setError("");
     setResults([]);
+    setSelectedResult(null);
 
     const params = new URLSearchParams({
       term: trimmedQuery,
@@ -90,29 +93,41 @@ function Search() {
             return (
               <Card
                 key={result.trackId || result.collectionId || result.artistId || index}
-                sx={{ display: "flex", overflow: "hidden", borderRadius: 3 }}
+                sx={{ overflow: "hidden", borderRadius: 3 }}
               >
-                {result.artworkUrl100 && (
-                  <Box
-                    component="img"
-                    src={result.artworkUrl100}
-                    alt={`Copertina di ${title}`}
-                    sx={{ width: 88, height: 88, objectFit: "cover" }}
-                  />
-                )}
-                <CardContent sx={{ minWidth: 0, py: 1.5, "&:last-child": { pb: 1.5 } }}>
-                  <Typography variant="subtitle1" component="h2" noWrap sx={{ fontWeight: 700 }}>
-                    {title}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" noWrap>
-                    {result.artistName}
-                  </Typography>
-                </CardContent>
+                <CardActionArea
+                  onClick={() => setSelectedResult(result)}
+                  aria-label={`Mostra i dettagli di ${title}`}
+                  sx={{ display: "flex", justifyContent: "flex-start", textAlign: "left" }}
+                >
+                  {result.artworkUrl100 && (
+                    <Box
+                      component="img"
+                      src={result.artworkUrl100}
+                      alt={`Copertina di ${title}`}
+                      sx={{ width: 88, height: 88, objectFit: "cover" }}
+                    />
+                  )}
+                  <CardContent sx={{ minWidth: 0, py: 1.5, "&:last-child": { pb: 1.5 } }}>
+                    <Typography variant="subtitle1" component="h2" noWrap sx={{ fontWeight: 700 }}>
+                      {title}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" noWrap>
+                      {result.artistName}
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
               </Card>
             );
           })}
         </Box>
       )}
+
+      <SearchDetailsDialog
+        result={selectedResult}
+        open={selectedResult}
+        onClose={() => setSelectedResult(null)}
+      />
     </>
   );
 }
