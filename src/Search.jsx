@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import ErrorMessage from "./ErrorMessage";
 import Loading from "./Loading";
 import PageTitle from "./PageTitle";
@@ -76,14 +76,42 @@ function Search() {
       {loading && <Loading />}
       {error && <ErrorMessage message={error} />}
 
-      {!loading && !error && (
-        <ol>
-          {results.map((result) => (
-            <li key={result.trackId}>
-              {result.trackName} — {result.artistName}
-            </li>
-          ))}
-        </ol>
+      {!loading && !error && results.length > 0 && (
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
+            gap: 2,
+          }}
+        >
+          {results.map((result, index) => {
+            const title = result.trackName || result.collectionName || result.artistName;
+
+            return (
+              <Card
+                key={result.trackId || result.collectionId || result.artistId || index}
+                sx={{ display: "flex", overflow: "hidden", borderRadius: 3 }}
+              >
+                {result.artworkUrl100 && (
+                  <Box
+                    component="img"
+                    src={result.artworkUrl100}
+                    alt={`Copertina di ${title}`}
+                    sx={{ width: 88, height: 88, objectFit: "cover" }}
+                  />
+                )}
+                <CardContent sx={{ minWidth: 0, py: 1.5, "&:last-child": { pb: 1.5 } }}>
+                  <Typography variant="subtitle1" component="h2" noWrap sx={{ fontWeight: 700 }}>
+                    {title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" noWrap>
+                    {result.artistName}
+                  </Typography>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </Box>
       )}
     </>
   );
