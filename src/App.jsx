@@ -5,7 +5,7 @@ import Home from './Home.jsx'
 import AlbumsClassifica from './Album/AlbumClassifica.jsx'
 import CanzoniClassifica from './Song/SongClassifica.jsx'
 import PodcastClassifica from './Podcast/PodcastClassifica.jsx'
-import Search from './Search.jsx'
+import Search from './Search/Search.jsx'
 
 function App() {
   return (

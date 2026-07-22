@@ -25,7 +25,7 @@ function PodcastDetailsDialog({ podcast, rank, open, onClose }) {
       onClose={onClose}
       fullWidth
       maxWidth="sm"
-      slotProps={{ paper: { sx: { borderRadius: 4, overflow: "hidden" } } }}
+      slotProps={{ paper: { sx: { borderRadius: 4, overflow: "hidden", backgroundImage: "none" } } }}
     >
       <Box
         sx={{
@@ -109,8 +109,17 @@ function PodcastDetailsDialog({ podcast, rank, open, onClose }) {
         </Stack>
       </DialogContent>
 
-      <DialogActions sx={{ px: 3, pb: 3, pt: 0 }}>
-        <Button onClick={onClose} color="inherit">
+      <DialogActions
+        sx={{
+          px: { xs: 2.5, sm: 3 },
+          pb: 3,
+          pt: 0,
+          gap: 1,
+          flexDirection: { xs: "column-reverse", sm: "row" },
+          "& > :not(style)": { m: 0, width: { xs: "100%", sm: "auto" } },
+        }}
+      >
+        <Button onClick={onClose} color="inherit" variant="outlined" startIcon={<CloseIcon />} sx={{ borderRadius: 999, px: 2.5, py: 1, borderColor: "divider" }}>
           Chiudi
         </Button>
         <Button
@@ -123,8 +132,15 @@ function PodcastDetailsDialog({ podcast, rank, open, onClose }) {
           sx={{
             borderRadius: 999,
             px: 3,
+            py: 1,
             color: "common.white",
-            background: "linear-gradient(135deg, #7c3aed, #ec4899)",
+            background: "linear-gradient(135deg, #fa2d55, #b5179e)",
+            boxShadow: "0 8px 20px rgba(250, 45, 85, 0.28)",
+            "&:hover": {
+              background: "linear-gradient(135deg, #e91e4d, #941285)",
+              boxShadow: "0 10px 26px rgba(250, 45, 85, 0.4)",
+              transform: "translateY(-2px)",
+            },
           }}
         >
           Vedi su Apple Podcasts

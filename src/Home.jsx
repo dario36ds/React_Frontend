@@ -52,7 +52,7 @@ function Home() {
         <Stack
           direction={{ xs: "column", sm: "row" }}
           spacing={1.5}
-          alignItems="flex-start"
+          alignitems="flex-start"
           sx={{ pt: 1 }}
         >
           <Button
