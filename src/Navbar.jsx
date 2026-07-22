@@ -1,6 +1,9 @@
 import GraphicEqRoundedIcon from "@mui/icons-material/GraphicEqRounded";
-import { AppBar, Box, Button, Container, Toolbar, Typography } from "@mui/material";
+import DarkModeRoundedIcon from "@mui/icons-material/DarkModeRounded";
+import LightModeRoundedIcon from "@mui/icons-material/LightModeRounded";
+import { AppBar, Box, Button, Container, IconButton, Toolbar, Typography } from "@mui/material";
 import { NavLink } from "react-router";
+import useAppTheme from "./useAppTheme.js";
 
 const links = [
   { label: "Home", path: "/" },
@@ -11,6 +14,8 @@ const links = [
 ];
 
 function Navbar() {
+  const { mode, toggleTheme } = useAppTheme();
+
   return (
     <AppBar
       position="sticky"
@@ -19,7 +24,7 @@ function Navbar() {
       sx={{
         borderBottom: 1,
         borderColor: "divider",
-        bgcolor: "rgba(255, 255, 255, 0.82)",
+        bgcolor: "background.paper",
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
       }}
@@ -108,6 +113,14 @@ function Navbar() {
                 {link.label}
               </Button>
             ))}
+            <IconButton
+              aria-label={mode === "light" ? "Attiva tema scuro" : "Attiva tema chiaro"}
+              onClick={toggleTheme}
+              color="inherit"
+              size="small"
+            >
+              {mode === "light" ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

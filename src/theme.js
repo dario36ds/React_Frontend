@@ -1,11 +1,16 @@
 import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
+const createAppTheme = (mode = "light") => createTheme({
   palette: {
+    mode,
     primary: { main: "#7c3aed", dark: "#6d28d9" },
     secondary: { main: "#ec4899" },
-    background: { default: "#faf9ff", paper: "#ffffff" },
-    text: { primary: "#211a2e", secondary: "#6c6478" },
+    background: mode === "light"
+      ? { default: "#faf9ff", paper: "#ffffff" }
+      : { default: "#17131d", paper: "#211a2e" },
+    text: mode === "light"
+      ? { primary: "#211a2e", secondary: "#6c6478" }
+      : { primary: "#f5f0fa", secondary: "#c9bdcf" },
   },
   shape: { borderRadius: 14 },
   typography: {
@@ -31,7 +36,7 @@ const theme = createTheme({
     },
     MuiCard: {
       styleOverrides: {
-        root: { border: "1px solid #e9e4ef", boxShadow: "0 4px 16px rgba(48, 30, 68, 0.06)" },
+        root: { border: "1px solid", borderColor: "divider", boxShadow: "0 4px 16px rgba(48, 30, 68, 0.06)" },
       },
     },
     MuiTextField: {
@@ -43,4 +48,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default createAppTheme;
