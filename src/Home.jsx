@@ -15,19 +15,6 @@ const primaryButtonStyle = {
   },
 };
 
-const secondaryButtonStyle = {
-  borderRadius: 999,
-  px: 2.5,
-  color: "text.primary",
-  borderColor: "divider",
-  bgcolor: "background.paper",
-  "&:hover": {
-    borderColor: "secondary.main",
-    bgcolor: "action.hover",
-    transform: "translateY(-2px)",
-  },
-};
-
 function Home() {
   return (
     <Box
@@ -79,24 +66,24 @@ function Home() {
           <Button
             component={Link}
             to="/classifica-album"
-            variant="outlined"
-            sx={secondaryButtonStyle}
+            variant="contained"
+            sx={primaryButtonStyle}
           >
             Classifica album
           </Button>
           <Button
             component={Link}
             to="/classifica-podcast"
-            variant="outlined"
-            sx={secondaryButtonStyle}
+            variant="contained"
+            sx={primaryButtonStyle}
           >
             Classifica podcast
           </Button>
           <Button
             component={Link}
             to="/ricerca"
-            variant="outlined"
-            sx={secondaryButtonStyle}
+            variant="contained"
+            sx={primaryButtonStyle}
           >
             Cerca
           </Button>
