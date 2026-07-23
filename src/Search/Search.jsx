@@ -56,7 +56,7 @@ function Search() {
   return (
     <>
       <PageTitle
-        title="Cerca"
+        title="Esplora"
         subtitle="Cerca canzoni, album e artisti su Apple Music."
       />
 

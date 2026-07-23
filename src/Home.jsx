@@ -105,7 +105,7 @@ function Home() {
               variant="contained"
               sx={{ ...primaryButtonStyle, width: "100%" }}
             >
-              Cerca
+              Esplora
             </Button>
           </Box>
         </Stack>

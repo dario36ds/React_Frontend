@@ -10,7 +10,7 @@ const links = [
   { label: "Canzoni", path: "/classifica-canzoni" },
   { label: "Album", path: "/classifica-album" },
   { label: "Podcast", path: "/classifica-podcast" },
-  { label: "Ricerca", path: "/ricerca" },
+  { label: "Esplora", path: "/ricerca" },
 ];
 
 function Navbar() {
