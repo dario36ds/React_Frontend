@@ -22,7 +22,7 @@ I dati sono forniti dalle API pubbliche di Apple Music e iTunes.
 - [React](https://react.dev/)
 - [Material UI](https://mui.com/)
 - [React Router](https://reactrouter.com/)
-- API iTunes Search e RSS
+- API iTunes Search e RSS ()
 
 ## Avvio del progetto
 
@@ -55,3 +55,4 @@ src/
 
 SoundRank utilizza esclusivamente dati pubblici ottenuti dalle API pubbliche dei servizi Apple ed iTunes.
 Copertine, titoli e informazioni sui contenuti appartengono ai rispettivi proprietari.
+Documentazione API utilizzate: https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/iTuneSearchAPI/index.html#//apple_ref/doc/uid/TP40017632-CH3-SW1
