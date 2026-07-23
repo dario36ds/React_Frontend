@@ -32,11 +32,12 @@ function Home() {
           " 65%, #ec489910)",
       }}
     >
-      <Stack spacing={2} sx={{ maxWidth: 700, textAlign: "left" }}>
+      <Stack spacing={2} sx={{ width: "100%", textAlign: "left" }}>
         <Typography
           variant="h1"
           sx={{
             m: 0,
+            maxWidth: 700,
             fontSize: { xs: 38, md: 54 },
             fontWeight: 800,
             letterSpacing: -1.5,
@@ -45,48 +46,68 @@ function Home() {
           La musica del momento
         </Typography>
 
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" sx={{ maxWidth: 700 }}>
           Consulta le classifiche italiane e cerca canzoni, album e artisti.
         </Typography>
 
         <Stack
-          direction={{ xs: "column", sm: "row" }}
-          spacing={1.5}
-          alignitems="flex-start"
+          spacing={2}
           sx={{ pt: 1 }}
         >
-          <Button
-            component={Link}
-            to="/classifica-canzoni"
-            variant="contained"
-            sx={primaryButtonStyle}
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={1.5}
+            aria-label="Classifiche"
+            sx={{
+              width: "100%",
+              "& > .MuiButton-root": {
+                flex: 1,
+                width: { xs: "100%", sm: "auto" },
+              },
+            }}
           >
-            Classifica canzoni
-          </Button>
-          <Button
-            component={Link}
-            to="/classifica-album"
-            variant="contained"
-            sx={primaryButtonStyle}
+            <Button
+              component={Link}
+              to="/classifica-canzoni"
+              variant="contained"
+              sx={primaryButtonStyle}
+            >
+              Classifica canzoni
+            </Button>
+            <Button
+              component={Link}
+              to="/classifica-album"
+              variant="contained"
+              sx={primaryButtonStyle}
+            >
+              Classifica album
+            </Button>
+            <Button
+              component={Link}
+              to="/classifica-podcast"
+              variant="contained"
+              sx={primaryButtonStyle}
+            >
+              Classifica podcast
+            </Button>
+          </Stack>
+
+          <Box
+            sx={{
+              borderTop: 1,
+              borderColor: "divider",
+              pt: 2,
+            }}
           >
-            Classifica album
-          </Button>
-          <Button
-            component={Link}
-            to="/classifica-podcast"
-            variant="contained"
-            sx={primaryButtonStyle}
-          >
-            Classifica podcast
-          </Button>
-          <Button
-            component={Link}
-            to="/ricerca"
-            variant="contained"
-            sx={primaryButtonStyle}
-          >
-            Cerca
-          </Button>
+            <Button
+              component={Link}
+              to="/ricerca"
+              variant="contained"
+              sx={{ ...primaryButtonStyle, width: "100%" }}
+            >
+              Cerca
+            </Button>
+          </Box>
         </Stack>
       </Stack>
     </Box>
