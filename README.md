@@ -1,16 +1,57 @@
-# React + Vite
+# SoundRank
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SoundRank è un'applicazione web per scoprire la musica e i podcast più popolari
+in Italia. Permette di consultare le classifiche aggiornate e cercare contenuti
+nel catalogo iTunes attraverso un'interfaccia semplice e responsive.
 
-Currently, two official plugins are available:
+## Funzionalità
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Classifica delle 25 canzoni più ascoltate
+- Classifica dei 25 album più popolari
+- Classifica dei 25 podcast più seguiti
+- Anteprima delle prime 3 canzoni nella home
+- Ricerca di canzoni, album, artisti e podcast
+- Schede con informazioni dettagliate sui contenuti
+- Tema chiaro e scuro
+- Interfaccia adattabile a desktop e dispositivi mobili
 
-## React Compiler
+I dati sono forniti dalle API pubbliche di Apple Music e iTunes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tecnologie
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/)
+- [Material UI](https://mui.com/)
+- [React Router](https://reactrouter.com/)
+- API iTunes Search e RSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Avvio del progetto
+
+Clona il repository e installa le dipendenze:
+
+```bash
+npm install
+```
+
+Avvia il progetto:
+
+```bash
+npm run dev
+```
+
+## Struttura principale
+
+```text
+src/
+├── Album/       # Classifica, card e dettagli degli album
+├── Podcast/     # Classifica, card e dettagli dei podcast
+├── Search/      # Ricerca e dettagli dei risultati
+├── Song/        # Classifica, card e dettagli delle canzoni
+├── App.jsx      # Rotte e struttura generale
+├── Home.jsx     # Pagina iniziale e Top 3
+└──  Navbar.jsx   # Navigazione e selettore del tema
+```
+
+## Dati
+
+SoundRank utilizza esclusivamente dati pubblici ottenuti dalle API pubbliche dei servizi Apple ed iTunes.
+Copertine, titoli e informazioni sui contenuti appartengono ai rispettivi proprietari.
