@@ -1,4 +1,5 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import { Link } from "react-router";
 
 const primaryButtonStyle = {
@@ -15,24 +16,82 @@ const primaryButtonStyle = {
   },
 };
 
+function TopSongs() {
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    fetch("https://itunes.apple.com/it/rss/topsongs/limit=3/json")
+      .then((response) => response.json())
+      .then((data) => {
+        setSongs(
+          (data.feed?.entry || []).map((song) => ({
+            id: song.id.attributes["im:id"],
+            title: song["im:name"].label,
+            artist: song["im:artist"].label,
+          })),
+        );
+      })
+      .catch(() => setSongs([]));
+  }, []);
+
+  return (
+    <Paper variant="outlined" sx={{ p: { xs: 2.5, md: 3 }, borderRadius: 4 }}>
+      <Typography variant="h5" component="h2" sx={{ mb: 1, fontWeight: 800 }}>
+        Top 3 canzoni
+      </Typography>
+
+      {songs.length === 0 && (
+        <Typography color="text.secondary">Caricamento classifica...</Typography>
+      )}
+
+      {songs.map((song, index) => (
+        <Stack
+          key={song.id}
+          direction="row"
+          spacing={2}
+          alignItems="center"
+          sx={{
+            py: 1.5,
+            borderBottom: index < songs.length - 1 ? 1 : 0,
+            borderColor: "divider",
+          }}
+        >
+          <Typography sx={{ width: 24, fontWeight: 800, color: "primary.main" }}>
+            {index + 1}
+          </Typography>
+          <Box sx={{ minWidth: 0 }}>
+            <Typography fontWeight={700} noWrap>
+              {song.title}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" noWrap>
+              {song.artist}
+            </Typography>
+          </Box>
+        </Stack>
+      ))}
+    </Paper>
+  );
+}
+
 function Home() {
   return (
-    <Box
-      className="hero"
-      sx={{
-        p: { xs: 3, md: 5 },
-        border: 1,
-        borderColor: "divider",
-        borderRadius: 4,
-        background: (theme) =>
-          "linear-gradient(135deg, " +
-          theme.palette.secondary.main +
-          "14, " +
-          theme.palette.background.paper +
-          " 65%, #ec489910)",
-      }}
-    >
-      <Stack spacing={2} sx={{ width: "100%", textAlign: "left" }}>
+    <Stack spacing={3}>
+      <Box
+        className="hero"
+        sx={{
+          p: { xs: 3, md: 5 },
+          border: 1,
+          borderColor: "divider",
+          borderRadius: 4,
+          background: (theme) =>
+            "linear-gradient(135deg, " +
+            theme.palette.secondary.main +
+            "14, " +
+            theme.palette.background.paper +
+            " 65%, #ec489910)",
+        }}
+      >
+        <Stack spacing={2} sx={{ width: "100%", textAlign: "left" }}>
         <Typography
           variant="h1"
           sx={{
@@ -109,8 +168,11 @@ function Home() {
             </Button>
           </Box>
         </Stack>
-      </Stack>
-    </Box>
+        </Stack>
+      </Box>
+
+      <TopSongs />
+    </Stack>
   );
 }
 
